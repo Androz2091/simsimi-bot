@@ -9,5 +9,6 @@ module.exports.run = function(client, message, args) {
 };
 
 module.exports.help = {
-  name: "help"
+  name: "help",
+  onlyMod: false
 };

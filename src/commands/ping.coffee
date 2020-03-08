@@ -7,5 +7,6 @@ module.exports.run = (client, message) ->
     sentMessage.edit """:ping_pong: Pong! `#{Date.now() - sentMessage.timestamp}ms`"""
 
 module.exports.help = {
-    name: "ping"
+    name: "ping",
+    onlyMod: false
 }

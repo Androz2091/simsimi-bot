@@ -6,7 +6,7 @@ module.exports.run = (client, message, args) ->
         """:x: You must specify something to say to Simsimi!"""
 
     userData = client.db.get("chatUses").value()[message.author.id] or 0
-    if userData > 100
+    if userData > maxRequestPerUser
         return client.createMessage message.channel.id,
         """:x: Ratelimit exceeded. You can't send messages to simsimi anymore..."""
 

@@ -1,5 +1,6 @@
 {
     "token": "discord bot token",
     "prefix": "/",
-    "simsimi": "simsimi api key"
+    "simsimi": "simsimi api key",
+    "maxRequestPerUser": 100
 }

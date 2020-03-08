@@ -8,5 +8,6 @@ module.exports.run = async function(client, message) {
 };
 
 module.exports.help = {
-  name: "ping"
+  name: "ping",
+  onlyMod: false
 };

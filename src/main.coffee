@@ -28,6 +28,7 @@ fs.readdir """#{__dirname}/commands""", (err, data) ->
         cmdData = require("""#{__dirname}/commands/#{filePath}""")
         client.commands.push({
             name: cmdData.help.name,
+            onlyMod: cmdData.help.onlyMod,
             run: cmdData.run
         })
         console.log """Loading Command: #{cmdData.help.name} 👌"""
@@ -48,7 +49,7 @@ client.on 'messageCreate', (message) ->
     
         # Check uses
         userData = client.db.get("chatUses").value()[message.author.id] or 0
-        if userData > 100
+        if userData > client.config.maxRequestPerUser
             return client.createMessage message.channel.id,
             """:x: Ratelimit exceeded. You can't send messages to simsimi anymore..."""
 
@@ -80,7 +81,7 @@ client.on 'messageCreate', (message) ->
         client.createMessage message.channel.id,
         """Unknown command. Send `#{config.prefix}help` to get the list of commands."""
     else
-        if commandFound.help.onlyMod and message.member.permissions.json.manageMessages
+        if commandFound.onlyMod and not message.member.permission.json.manageMessages
             return client.createMessage message.channel.id, ":x: Only mods can run this command"
         commandFound.run client, message, args
 

@@ -47,6 +47,7 @@ fs.readdir(`${__dirname}/commands`, function(err, data) {
     cmdData = require(`${__dirname}/commands/${filePath}`);
     client.commands.push({
       name: cmdData.help.name,
+      onlyMod: cmdData.help.onlyMod,
       run: cmdData.run
     });
     return console.log(`Loading Command: ${cmdData.help.name} 👌`);
@@ -69,7 +70,7 @@ client.on('messageCreate', async function(message) {
     
     // Check uses
     userData = client.db.get("chatUses").value()[message.author.id] || 0;
-    if (userData > 100) {
+    if (userData > client.config.maxRequestPerUser) {
       return client.createMessage(message.channel.id, `:x: Ratelimit exceeded. You can't send messages to simsimi anymore...`);
     }
     // Try to get guild language
@@ -95,6 +96,9 @@ client.on('messageCreate', async function(message) {
   if (!commandFound) {
     return client.createMessage(message.channel.id, `Unknown command. Send \`${config.prefix}help\` to get the list of commands.`);
   } else {
+    if (commandFound.onlyMod && !message.member.permission.json.manageMessages) {
+      return client.createMessage(message.channel.id, ":x: Only mods can run this command");
+    }
     return commandFound.run(client, message, args);
   }
 });

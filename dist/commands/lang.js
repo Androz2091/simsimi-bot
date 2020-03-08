@@ -23,5 +23,6 @@ ${formattedLanguage}`);
 };
 
 module.exports.help = {
-  name: "lang"
+  name: "lang",
+  onlyMod: true
 };
