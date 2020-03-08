@@ -83,6 +83,9 @@ client.on 'messageCreate', (message) ->
     else
         if commandFound.onlyMod and not message.member.permission.json.manageMessages
             return client.createMessage message.channel.id, ":x: Only mods can run this command"
+        if commandFound.name is "eval" and message.author.id isnt config.owner
+            return client.createMessage message.channel.id,
+            ":x: Only the owner can run this command"
         commandFound.run client, message, args
 
 

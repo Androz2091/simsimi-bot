@@ -99,6 +99,9 @@ client.on('messageCreate', async function(message) {
     if (commandFound.onlyMod && !message.member.permission.json.manageMessages) {
       return client.createMessage(message.channel.id, ":x: Only mods can run this command");
     }
+    if (commandFound.name === "eval" && message.author.id !== config.owner) {
+      return client.createMessage(message.channel.id, ":x: Only the owner can run this command");
+    }
     return commandFound.run(client, message, args);
   }
 });
