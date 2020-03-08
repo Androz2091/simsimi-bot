@@ -15,7 +15,7 @@ module.exports.run = function(client, message, args) {
         depth: 0
       });
     }
-    return client.createMessage(message.channel.id, `\`\`\`js\n${output}\n`);
+    return client.createMessage(message.channel.id, `\`\`\`js\n${output}\n\`\`\``);
   }).catch(function(err) {
     return client.createMessage(message.channel.id, `\`\`\`js\n${err.toString()}\n\`\`\``);
   });
