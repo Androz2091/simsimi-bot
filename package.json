@@ -1,0 +1,26 @@
+{
+  "name": "simsimi-bot",
+  "version": "1.0.0",
+  "description": "Simsimi Discord Bot!",
+  "main": "dist/main.js",
+  "scripts": {
+    "test": "node dist/main.js",
+    "build": "rm -rf dist/ && rm -rf docs/ && coffee -o dist/ -bc src/",
+    "start": "npm run build && node dist/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Androz2091/simsimi-bot.git"
+  },
+  "author": "Androz2091",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Androz2091/simsimi-bot/issues"
+  },
+  "homepage": "https://github.com/Androz2091/simsimi-bot#readme",
+  "dependencies": {
+    "eris": "^0.11.2",
+    "lowdb": "^1.0.0",
+    "node-fetch": "^2.6.0"
+  }
+}
