@@ -80,6 +80,8 @@ client.on 'messageCreate', (message) ->
         client.createMessage message.channel.id,
         """Unknown command. Send `#{config.prefix}help` to get the list of commands."""
     else
+        if commandFound.help.onlyMod and message.member.permissions.json.manageMessages
+            return client.createMessage message.channel.id, ":x: Only mods can run this command"
         commandFound.run client, message, args
 
 

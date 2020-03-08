@@ -29,5 +29,6 @@ module.exports.run = (client, message, args) ->
 
 
 module.exports.help = {
-    name: "lang"
+    name: "lang",
+    onlyMod: true
 }
