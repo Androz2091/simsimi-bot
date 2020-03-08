@@ -6,7 +6,7 @@ module.exports.run = async function(client, message, args) {
     return client.createMessage(message.channel.id, `:x: You must specify something to say to Simsimi!`);
   }
   userData = client.db.get("chatUses").value()[message.author.id] || 0;
-  if (userData > maxRequestPerUser) {
+  if (userData > client.config.maxRequestPerUser) {
     return client.createMessage(message.channel.id, `:x: Ratelimit exceeded. You can't send messages to simsimi anymore...`);
   }
   // Try to get guild language
