@@ -20,7 +20,7 @@
   "homepage": "https://github.com/Androz2091/simsimi-bot#readme",
   "dependencies": {
     "eris": "^0.14.0",
-    "lowdb": "^1.0.0",
+    "lowdb": "^2.0.2",
     "node-fetch": "^2.6.0"
   }
 }
